@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3 uid="uid://bojhnxvk0a6th"]
+
+[ext_resource type="Script" path="res://root/root.gd" id="1_sug5a"]
+[ext_resource type="PackedScene" uid="uid://cic2hjvl84d1b" path="res://root/itemPopout.tscn" id="2_7sesc"]
+[ext_resource type="Texture2D" uid="uid://cfkhcuh5e4gwt" path="res://gridpaper.jpg" id="3_3ibly"]
+[ext_resource type="PackedScene" uid="uid://5ua0i70iduxy" path="res://gates/wireConnector/wireConnector.tscn" id="4_ogxtd"]
+[ext_resource type="PackedScene" uid="uid://cuy1dmgewe2j4" path="res://gates/powerout/powerOut.tscn" id="5_vpwfl"]
+
+[node name="Node" type="Node"]
+script = ExtResource("1_sug5a")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -1)
+offset = Vector2(960, 540)
+limit_left = -5000
+limit_top = -5000
+limit_right = 5000
+limit_bottom = 5000
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 0
+
+[node name="itemPopout" parent="CanvasLayer" instance=ExtResource("2_7sesc")]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+follow_viewport_enabled = true
+scroll_base_scale = Vector2(200, 200)
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground"]
+offset_left = -11000.0
+offset_top = -11000.0
+offset_right = 11000.0
+offset_bottom = 11000.0
+texture = ExtResource("3_3ibly")
+stretch_mode = 1
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(-0.001, 0)
+
+[node name="wireConnector" parent="." instance=ExtResource("4_ogxtd")]
+
+[node name="RigidBody2D" parent="." instance=ExtResource("5_vpwfl")]
+position = Vector2(1037, 114)
+
+[connection signal="createItem" from="CanvasLayer/itemPopout" to="." method="_on_item_popout_create_item"]

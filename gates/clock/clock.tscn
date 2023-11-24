@@ -1,0 +1,84 @@
+[gd_scene load_steps=6 format=3 uid="uid://setp7f1uuunv"]
+
+[ext_resource type="Script" path="res://gates/clock/clock.gd" id="1_5es2c"]
+[ext_resource type="Texture2D" uid="uid://nx54lu50w5wq" path="res://icon.svg" id="2_qstud"]
+[ext_resource type="Script" path="res://gates/uiPopOut.gd" id="4_e5g3r"]
+[ext_resource type="PackedScene" uid="uid://cl8liesiq3ocl" path="res://outputConnector/outputConnector.tscn" id="4_geo6r"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_570in"]
+size = Vector2(120, 120)
+
+[node name="RigidBody2D" type="RigidBody2D" groups=["pickable"]]
+show_behind_parent = true
+rotation = 0.00145367
+input_pickable = true
+mass = 0.01
+gravity_scale = 0.0
+freeze = true
+freeze_mode = 1
+script = ExtResource("1_5es2c")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_qstud")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_570in")
+debug_color = Color(0.364706, 0.607843, 0.313726, 0.419608)
+
+[node name="outputConnector" parent="." instance=ExtResource("4_geo6r")]
+position = Vector2(70, 0)
+
+[node name="uiPopOut" type="Control" parent="."]
+layout_mode = 3
+anchor_right = 0.156
+anchor_bottom = 0.084
+offset_left = -29.0
+offset_top = 65.0
+offset_right = -24.0
+offset_bottom = 65.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_e5g3r")
+
+[node name="Panel" type="Panel" parent="uiPopOut"]
+layout_mode = 0
+offset_left = -34.0029
+offset_top = -1.95055
+offset_right = 91.9971
+offset_bottom = 107.049
+
+[node name="ScrollContainer" type="ScrollContainer" parent="uiPopOut/Panel"]
+layout_mode = 0
+offset_left = 2.00286
+offset_top = 1.95056
+offset_right = 124.003
+offset_bottom = 106.951
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="uiPopOut/Panel/ScrollContainer"]
+layout_direction = 1
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Button" type="Button" parent="uiPopOut/Panel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Delete"
+
+[node name="HSlider" type="HSlider" parent="uiPopOut/Panel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+min_value = 0.2
+max_value = 10.0
+step = 0.2
+value = 0.2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="uiPopOut/Panel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
+text = "Time delay: 0.2 (seconds)"
+fit_content = true
+
+[connection signal="pressed" from="uiPopOut/Panel/ScrollContainer/VBoxContainer/Button" to="uiPopOut" method="_on_button_pressed" flags=18]
+[connection signal="value_changed" from="uiPopOut/Panel/ScrollContainer/VBoxContainer/HSlider" to="." method="_on_h_slider_value_changed"]

@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://cuy1dmgewe2j4"]
+
+[ext_resource type="Texture2D" uid="uid://nx54lu50w5wq" path="res://icon.svg" id="1_0ud7x"]
+[ext_resource type="Script" path="res://gates/powerout/powerOut.gd" id="1_ubhwj"]
+[ext_resource type="PackedScene" uid="uid://cl8liesiq3ocl" path="res://outputConnector/outputConnector.tscn" id="2_jvq17"]
+[ext_resource type="PackedScene" uid="uid://bdbsw85gp6bkx" path="res://gates/ui_pop_out.tscn" id="4_688dv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tfm6v"]
+size = Vector2(120, 120)
+
+[node name="RigidBody2D" type="RigidBody2D" groups=["pickable"]]
+input_pickable = true
+mass = 0.01
+freeze = true
+freeze_mode = 1
+script = ExtResource("1_ubhwj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_tfm6v")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_0ud7x")
+
+[node name="outputConnector" parent="." instance=ExtResource("2_jvq17")]
+position = Vector2(62.9993, -0.288396)
+
+[node name="uiPopOut" parent="." instance=ExtResource("4_688dv")]
+offset_left = -23.9055
+offset_top = 65.0348
+offset_right = -23.9055
+offset_bottom = 65.0348
