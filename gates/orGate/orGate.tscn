@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://biof0jj237x2v"]
+
+[ext_resource type="Script" path="res://gates/orGate/orGate.gd" id="1_sewyc"]
+[ext_resource type="Texture2D" uid="uid://d3s6sfoj8ih0n" path="res://textures/offOr.svg" id="2_71a0q"]
+[ext_resource type="PackedScene" uid="uid://e1021yg63ils" path="res://inputConnector/inputConnector.tscn" id="3_jra35"]
+[ext_resource type="PackedScene" uid="uid://cl8liesiq3ocl" path="res://outputConnector/outputConnector.tscn" id="4_8a56t"]
+[ext_resource type="PackedScene" uid="uid://bdbsw85gp6bkx" path="res://gates/ui_pop_out.tscn" id="5_rh1kn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_570in"]
+size = Vector2(120, 120)
+
+[node name="RigidBody2D" type="RigidBody2D" groups=["pickable"]]
+input_pickable = true
+mass = 0.01
+gravity_scale = 0.0
+freeze = true
+freeze_mode = 1
+script = ExtResource("1_sewyc")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_71a0q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_570in")
+debug_color = Color(0.364706, 0.607843, 0.313726, 0.419608)
+
+[node name="inputConnector" parent="." instance=ExtResource("3_jra35")]
+position = Vector2(-25, 22)
+
+[node name="inputConnector2" parent="." instance=ExtResource("3_jra35")]
+position = Vector2(-25, -22)
+
+[node name="outputConnector" parent="." instance=ExtResource("4_8a56t")]
+position = Vector2(65, 0)
+
+[node name="uiPopOut" parent="." instance=ExtResource("5_rh1kn")]
+offset_left = -23.9055
+offset_top = 65.0348
+offset_right = -23.9055
+offset_bottom = 65.0348

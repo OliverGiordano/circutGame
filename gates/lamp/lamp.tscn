@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://bbd5xyl7u8mkj"]
+
+[ext_resource type="Script" path="res://gates/lamp/lamp.gd" id="1_gmw3q"]
+[ext_resource type="Texture2D" uid="uid://nx54lu50w5wq" path="res://icon.svg" id="1_uhywe"]
+[ext_resource type="PackedScene" uid="uid://e1021yg63ils" path="res://inputConnector/inputConnector.tscn" id="3_w2n21"]
+[ext_resource type="PackedScene" uid="uid://bdbsw85gp6bkx" path="res://gates/ui_pop_out.tscn" id="4_x2tpn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_570in"]
+size = Vector2(120, 120)
+
+[node name="RigidBody2D" type="RigidBody2D" groups=["pickable"]]
+input_pickable = true
+mass = 0.01
+gravity_scale = 0.0
+freeze = true
+freeze_mode = 1
+script = ExtResource("1_gmw3q")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 0.972549, 1)
+texture = ExtResource("1_uhywe")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_570in")
+debug_color = Color(0.364706, 0.607843, 0.313726, 0.419608)
+
+[node name="inputConnector" parent="." instance=ExtResource("3_w2n21")]
+position = Vector2(-61.0014, -0.911325)
+
+[node name="uiPopOut" parent="." instance=ExtResource("4_x2tpn")]
+offset_left = -30.0
+offset_top = 70.0
+offset_right = -30.0
+offset_bottom = 70.0

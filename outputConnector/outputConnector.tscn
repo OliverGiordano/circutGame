@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://cl8liesiq3ocl"]
+
+[ext_resource type="Script" path="res://outputConnector/outputConnector.gd" id="1_4vbgb"]
+[ext_resource type="Texture2D" uid="uid://nx54lu50w5wq" path="res://icon.svg" id="2_x337e"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_exca1"]
+size = Vector2(30, 30)
+
+[node name="outputConnector" type="RigidBody2D" groups=["output"]]
+input_pickable = true
+mass = 0.01
+gravity_scale = 0.0
+freeze = true
+freeze_mode = 1
+script = ExtResource("1_4vbgb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_exca1")
+debug_color = Color(0.854902, 0.364706, 0.137255, 0.419608)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_x337e")
+
+[node name="Line2D" type="Line2D" parent="."]
+z_index = -3
+default_color = Color(0.141176, 0.607843, 0.258824, 1)

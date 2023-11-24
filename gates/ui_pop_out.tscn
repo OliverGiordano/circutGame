@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://bdbsw85gp6bkx"]
+
+[ext_resource type="Script" path="res://gates/uiPopOut.gd" id="1_7jcyk"]
+
+[node name="uiPopOut" type="Control"]
+layout_mode = 3
+anchor_right = 0.156
+anchor_bottom = 0.084
+offset_right = -0.52002
+offset_bottom = 0.279991
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7jcyk")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+horizontal_scroll_mode = 0
+
+[node name="Button" type="Button" parent="ScrollContainer"]
+layout_mode = 2
+text = "Delete"
+
+[connection signal="pressed" from="ScrollContainer/Button" to="." method="_on_button_pressed"]

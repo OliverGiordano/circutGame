@@ -1,0 +1,87 @@
+[gd_scene load_steps=6 format=3 uid="uid://cic2hjvl84d1b"]
+
+[ext_resource type="Script" path="res://root/itemPopout.gd" id="1_r5jgt"]
+[ext_resource type="Texture2D" uid="uid://d3s6sfoj8ih0n" path="res://textures/offOr.svg" id="2_i4qpu"]
+[ext_resource type="Texture2D" uid="uid://bxyu2pj5s04dj" path="res://textures/offAnd.svg" id="3_xeqxy"]
+[ext_resource type="Texture2D" uid="uid://nx54lu50w5wq" path="res://icon.svg" id="4_xq1u3"]
+
+[sub_resource type="Theme" id="Theme_jcmgl"]
+
+[node name="itemPopout" type="Control"]
+layout_mode = 3
+anchor_right = 0.141
+anchor_bottom = 0.586
+offset_top = 2.0
+offset_right = -270.72
+offset_bottom = -630.88
+mouse_force_pass_scroll_events = false
+theme = SubResource("Theme_jcmgl")
+script = ExtResource("1_r5jgt")
+
+[node name="Panel" type="Panel" parent="."]
+custom_minimum_size = Vector2(240, 600)
+layout_mode = 0
+offset_right = 240.0
+offset_bottom = 600.0
+mouse_filter = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/ScrollContainer"]
+layout_mode = 2
+
+[node name="or" type="TextureButton" parent="Panel/ScrollContainer/VBoxContainer" groups=["button"]]
+layout_mode = 2
+action_mode = 0
+texture_normal = ExtResource("2_i4qpu")
+
+[node name="and" type="TextureButton" parent="Panel/ScrollContainer/VBoxContainer" groups=["button"]]
+layout_mode = 2
+action_mode = 0
+texture_normal = ExtResource("3_xeqxy")
+
+[node name="not" type="TextureButton" parent="Panel/ScrollContainer/VBoxContainer" groups=["button"]]
+layout_mode = 2
+action_mode = 0
+texture_normal = ExtResource("4_xq1u3")
+
+[node name="switch" type="TextureButton" parent="Panel/ScrollContainer/VBoxContainer" groups=["button"]]
+layout_mode = 2
+action_mode = 0
+texture_normal = ExtResource("4_xq1u3")
+
+[node name="power" type="TextureButton" parent="Panel/ScrollContainer/VBoxContainer" groups=["button"]]
+layout_mode = 2
+action_mode = 0
+texture_normal = ExtResource("4_xq1u3")
+
+[node name="lamp" type="TextureButton" parent="Panel/ScrollContainer/VBoxContainer" groups=["button"]]
+layout_mode = 2
+action_mode = 0
+texture_normal = ExtResource("4_xq1u3")
+
+[node name="clock" type="TextureButton" parent="Panel/ScrollContainer/VBoxContainer" groups=["button"]]
+layout_mode = 2
+action_mode = 0
+texture_normal = ExtResource("4_xq1u3")
+
+[node name="splitter" type="TextureButton" parent="Panel/ScrollContainer/VBoxContainer" groups=["button"]]
+layout_mode = 2
+action_mode = 0
+texture_normal = ExtResource("4_xq1u3")
+
+[connection signal="button_down" from="Panel/ScrollContainer/VBoxContainer/or" to="." method="_on_or_button_down"]
+[connection signal="button_down" from="Panel/ScrollContainer/VBoxContainer/and" to="." method="_on_and_button_down"]
+[connection signal="button_down" from="Panel/ScrollContainer/VBoxContainer/not" to="." method="_on_not_button_down"]
+[connection signal="button_down" from="Panel/ScrollContainer/VBoxContainer/switch" to="." method="_on_switch_button_down"]
+[connection signal="button_down" from="Panel/ScrollContainer/VBoxContainer/power" to="." method="_on_power_button_down"]
+[connection signal="button_down" from="Panel/ScrollContainer/VBoxContainer/lamp" to="." method="_on_lamp_button_down"]
+[connection signal="button_down" from="Panel/ScrollContainer/VBoxContainer/clock" to="." method="_on_clock_button_down"]
+[connection signal="button_down" from="Panel/ScrollContainer/VBoxContainer/splitter" to="." method="_on_splitter_button_down"]
