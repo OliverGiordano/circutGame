@@ -26,5 +26,5 @@ func _on_clock_button_down():
 	createItem.emit("clock")
 func _on_splitter_button_down():
 	createItem.emit("splitter")
-
-
+func _on_wire_connector_button_down():
+	createItem.emit("wireConnector")

@@ -1,5 +1,7 @@
 extends Node2D
 
+signal clicked
+var held
 var attachPoints = []
 var online = false
 var powered = false
@@ -23,6 +25,9 @@ func _process(_delta):
 		moveConnector()
 		updateCollision()
 		drawLine()
+	if held:
+		$end1.position = to_local(self.get_global_mouse_position()) - Vector2(+10, 0)
+		$end2.position = to_local(self.get_global_mouse_position()) - Vector2(-10, 0)
 	endOneCoord.remove_at(0)
 	endTwoCoord.remove_at(0)
 	deleteFree()
@@ -122,3 +127,8 @@ func _on_static_body_2d_mouse_entered():
 
 func _on_static_body_2d_mouse_exited():
 	online = false
+
+func pickup():
+	pass
+func drop():
+	held = false

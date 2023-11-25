@@ -9,7 +9,6 @@ var panHeld = false
 func _ready():
 	Globals.dropInit.connect(dropHeldInitial)
 	for node in get_tree().get_nodes_in_group("pickable"):
-		print(node)
 		node.clicked.connect(_on_pickable_clicked)
 	timerClock(0)
 	
@@ -40,7 +39,6 @@ func dropHeldInitial():
 func _unhandled_input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if !event.pressed:
-			#print("E")
 			pass
 		if held_object and !event.pressed:
 			held_object.drop()
@@ -80,6 +78,7 @@ func _unhandled_input(event):
 @onready var lamp = preload("res://gates/lamp/lamp.tscn")
 @onready var clock = preload("res://gates/clock/clock.tscn")
 @onready var splitter = preload("res://gates/splitter/splitter.tscn")
+@onready var wireConnector = preload("res://gates/wireConnector/wireConnector.tscn")
 
 func _on_item_popout_create_item(item):
 	var n = null
@@ -100,6 +99,8 @@ func _on_item_popout_create_item(item):
 			n = clock.instantiate()
 		"splitter":
 			n = splitter.instantiate()
+		"wireConnector":
+			n = wireConnector.instantiate()
 		_:
 			return
 	makeChild(n)
@@ -108,7 +109,9 @@ func _on_item_popout_create_item(item):
 func makeChild(child):
 	add_child(child)
 	child.clicked.connect(_on_pickable_clicked)
+	for c in child.get_children():
+		if c.is_in_group("pickable"):
+			c.clicked.connect(_on_pickable_clicked)
 	child.held = true
 	held_object = child
-	#child.clicked.emit(self)
 	child.pickup()
