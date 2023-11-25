@@ -11,6 +11,8 @@ var endTwoCoord = []
 @onready var outputConnector = preload("res://outputConnector/outputConnector.tscn")
 
 func _ready():
+	$end1.position = to_local(self.get_global_mouse_position()) - Vector2(+10, 0)
+	$end2.position = to_local(self.get_global_mouse_position()) - Vector2(-10, 0)
 	$uiPopOut.hide()
 	endOneCoord.append($end1.position)
 	endTwoCoord.append($end2.position)
@@ -123,12 +125,28 @@ func deleteFree():
 
 func _on_static_body_2d_mouse_entered():
 	online = true
-
-
 func _on_static_body_2d_mouse_exited():
 	online = false
-
 func pickup():
 	pass
 func drop():
 	held = false
+
+
+func _on_button_pressed():
+	#if node == self:
+	deleteSafely()
+
+#func checkDeleteSafely(node):
+#	if node == self:
+#		deleteSafely()
+
+func deleteSafely():
+	for child in self.get_children():
+		if child.is_in_group("input") || child.is_in_group("output"):
+			if child.connectedTo != null:
+				child.connectedTo.connectedTo = null
+				child.connectedTo.isPowered = false
+				child.connectedTo.clearLines()
+				child.connectedTo = null
+	self.queue_free()

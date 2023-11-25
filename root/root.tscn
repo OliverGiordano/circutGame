@@ -40,6 +40,7 @@ motion_scale = Vector2(-0.001, 0)
 [node name="wireConnector" parent="." instance=ExtResource("4_ogxtd")]
 
 [node name="RigidBody2D" parent="." instance=ExtResource("5_vpwfl")]
+visible = false
 position = Vector2(1037, 114)
 
 [connection signal="createItem" from="CanvasLayer/itemPopout" to="." method="_on_item_popout_create_item"]

@@ -1,8 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://5ua0i70iduxy"]
+[gd_scene load_steps=6 format=3 uid="uid://5ua0i70iduxy"]
 
 [ext_resource type="Script" path="res://gates/wireConnector/wireConnector.gd" id="1_td2it"]
 [ext_resource type="Script" path="res://root/wireEnds.gd" id="2_xwpsc"]
-[ext_resource type="Script" path="res://gates/uiPopOut.gd" id="3_nxki1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1pkk1"]
 
@@ -58,7 +57,6 @@ offset_right = -0.52002
 offset_bottom = 0.279991
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("3_nxki1")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="uiPopOut"]
 layout_mode = 0
@@ -71,6 +69,7 @@ layout_mode = 2
 text = "Delete"
 
 [node name="Panel" type="Panel" parent="uiPopOut"]
+visible = false
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -78,4 +77,4 @@ scale = Vector2(1.49296, 0.992746)
 
 [connection signal="mouse_entered" from="Line2D/StaticBody2D" to="." method="_on_static_body_2d_mouse_entered"]
 [connection signal="mouse_exited" from="Line2D/StaticBody2D" to="." method="_on_static_body_2d_mouse_exited"]
-[connection signal="pressed" from="uiPopOut/ScrollContainer/Button" to="uiPopOut" method="_on_button_pressed" flags=18]
+[connection signal="pressed" from="uiPopOut/ScrollContainer/Button" to="." method="_on_button_pressed"]
